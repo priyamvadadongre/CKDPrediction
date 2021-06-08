@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <style>
+       input:hover{ 
+      background-color: #ffffcc;
+      }   
+      input{ margin-top: 10px;
+      height: 35px;
+      }
+      body{
+      background-color: #ccddff;}
+      
+      .btn btn-primary btn-block btn-large:hover{
+      background-color: #4CAF50; /* Green */
+      color: white;
+}
+      button {
+  background-color:#4CAF50;
+  color: white;
+  transition-duration: 0.4s;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+}
+   
+  </style>
+</head>
+
+<body>
+ <div class="login">
+	<h1>CKD PREDICTOR </h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}} "method="post">
+    	<input type="text" name="age" placeholder="AGE 2-90" required="required"/>
+        <input type="text" name="bp" placeholder="BP 50-180" required="required" />
+		 <input type="text" name="sg" placeholder="SG 1.005-1.025" required="required" />
+		<input type="text" name="al" placeholder="AL 0-5" required="required" />
+        <input type="text" name="su" placeholder="SU 0-5" required="required" /><br/>
+        
+         RBC:
+         <input type="radio" name="rbc" placeholder="rbc" value=1.0 id="abnormal"/>
+         <label for="abnormal">Abnormal</label>
+         <input type="radio" name="rbc" placeholder="rbc" value=0.0 id="normal"/>
+         <label for="normal">Normal</label><br/>
+         
+          PC  :
+         <input type="radio" name="pc" value=1.0 id="abnormalp"/>
+         <label for="abnormalp">Abnormal</label>
+         <input type="radio" name="pc" value=0.0 id="normalp"/>
+         <label for="normalp">Normal</label><br/>
+         
+         
+         PCC:
+         <input type="radio" name="pcc"  value=1.0 id="present"/>
+         <label for="present">Present</label>
+         <input type="radio" name="pcc" value=0.0 id="absent"/>
+         <label for="present">Absent</label><br/>
+          BA:
+         <input type="radio" name="ba"  value=1.0 id="presentp"/>
+         <label for="presentp">Present</label>
+         <input type="radio" name="ba" value=0.0 id="absentp"/>
+         <label for="absentp">Absent</label><br/>
+         
+        
+         
+		<input type="text" name="bgr" placeholder="BGR 22-490" required="required" />
+		<input type="text" name="bu" placeholder="BU 1.5-391.0" required="required" />
+        <input type="text" name="sc" placeholder="SC 0.4-76.0" required="required" />
+		<input type="text" name="sod" placeholder="SOD 4.5-163" required="required" />
+        <input type="text" name="hemo" placeholder="HEMO 3.1-17.8" required="required" />
+		<input type="text" name="wc" placeholder="WC 2200-26400" required="required" />
+        <input type="text" name="rc" placeholder="RC 2-8" required="required" /><br/>
+        
+        
+         HTN  :
+         <input type="radio" name="htn"  value=1.0 id="yes"/>
+         <label for="presentp">Yes</label>
+         <input type="radio" name="htn" value=0.0 id="no"/>
+         <label for="absentp">No</label><br/>
+         
+          DM  :
+         <input type="radio" name="dm"  value=1.0 id="yesp"/>
+         <label for="yesp">Yes</label>
+         <input type="radio" name="dm" value=0.0 id="nop"/>
+         <label for="nop">No</label><br/>
+         
+          CAD:
+         <input type="radio" name="cad"  value=1.0 id="yesq"/>
+         <label for="yesq">Yes</label>
+         <input type="radio" name="cad" value=0.0 id="noq"/>
+         <label for="noq">No</label><br/>
+         
+         APPET:
+		<input type="radio" name="appet"  value=1.0 id="good"/>
+       <label for="good">Good</label>
+         <input type="radio" name="appet" value=0.0 id="Bad"/>
+         <label for="appet">Bad</label><br/>
+         
+         PE:
+         <input type="radio" name="pe"  value=1.0 id="yesq"/>
+         <label for="yesq">Yes</label>
+         <input type="radio" name="pe" value=0.0 id="noq"/>
+         <label for="noq">No</label><br/>
+       
+         ANE:
+          <input type="radio" name="ana"  value=1.0 id="yesr"/>
+         <label for="yesr">Yes</label>
+         <input type="radio" name="ane" value=0.0 id="nor"/>
+         <label for="nor">No</label><br/>
+		
+		
+        
+        <button type="submit" class="btn btn-primary btn-block btn-large">PREDICT</button>
+    </form>
+
+   <strong style= "text-color:#43baa4; ">
+   {{ prediction_text }}
+   </strong>
+  
+<br/>
+<br/>
+ </div>
+
+
+</body>
+</html>
