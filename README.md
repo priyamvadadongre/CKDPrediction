@@ -1,2 +1,2 @@
 # CKD Prediction Using log reg
- website : https://ckdpredictor-api.herokuapp.com/
+ website : https://ckdminiproject.herokuapp.com/
